@@ -86,7 +86,7 @@ def xmldictmaker(inputdict, req_items, list_items=[], str_items=[]):
 
 def is_arithmetic(s):
     def _is_arithmetic(node):
-        if isinstance(node, ast.Num):
+        if isinstance(node, ast.Constant):
             return True
         elif isinstance(node, ast.Expression):
             return _is_arithmetic(node.body)

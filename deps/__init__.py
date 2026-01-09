@@ -2,15 +2,13 @@
 import sys
 import pathlib
 import subprocess
+import io
 
 try:
     import pip
 except ImportError:
     print("pip appears to not be installed")
     sys.exit(1)
-
-import pkg_resources
-
 
 class Dependencies():
     """
@@ -32,8 +30,8 @@ class Dependencies():
         """
 
         packages_dict = {}
-        installed_packages = pkg_resources.working_set
-        sorted_packages = sorted(["%s==%s" % (i.key, i.version) for i in installed_packages])
+        # pkg_resources was removed in 3.14 so this got a bit hacky
+        sorted_packages = (p.strip().lower() for p in io.StringIO(subprocess.check_output(('python','-m','pip','freeze')).decode()).readlines())
         for pypipreq in sorted_packages:
 
             if pypipreq and pypipreq != '':

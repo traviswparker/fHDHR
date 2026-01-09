@@ -128,7 +128,7 @@ class Direct_RTP_Stream():
                 base_url = self.stream_args["base_url"].split("://")[1].split(":")[0]
             except IndexError:
                 return None
-            ip_match = re.match('^' + '[\.]'.join(['(\d{1,3})']*4) + '$', base_url)
+            ip_match = re.match('^' + '[\\.]'.join(['(\\d{1,3})']*4) + '$', base_url)
             ip_validate = bool(ip_match)
             if ip_validate:
                 return base_url
