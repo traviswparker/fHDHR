@@ -7,8 +7,6 @@ Type=simple
 ExecStart=/opt/fhdhr/fhdhr.sh
 Restart=on-failure
 RestartSec=5s
-StandardOutput=append:/var/log/fHDHR.log
-StandardError=append:/var/log/fHDHR.log
 
 [Install]
 WantedBy=multi-user.target
